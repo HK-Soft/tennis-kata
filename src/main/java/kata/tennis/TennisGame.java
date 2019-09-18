@@ -8,42 +8,42 @@ public class TennisGame {
 
     public StandardGameScore nextStandardGameScore(PlayerID player, StandardGameScore currentScore) {
         StandardGameScore result = currentScore.copy();
-        if(
-            player == PlayerID.FIRST_PLAYER &&
-            currentScore.getFirstPlayerScore() == GameScoreType.ADVANTAGE
-        ){
+        if (
+                player == PlayerID.FIRST_PLAYER &&
+                        currentScore.getFirstPlayerScore() == GameScoreType.ADVANTAGE
+        ) {
             result.setFirstPlayerScore(GameScoreType.WIN);
             return result;
         }
-        if(
-            player == PlayerID.SECOND_PLAYER &&
-            currentScore.getSecondPlayerScore() == GameScoreType.ADVANTAGE
-        ){
+        if (
+                player == PlayerID.SECOND_PLAYER &&
+                        currentScore.getSecondPlayerScore() == GameScoreType.ADVANTAGE
+        ) {
             result.setSecondPlayerScore(GameScoreType.WIN);
             return result;
         }
-        if(
-           player == PlayerID.FIRST_PLAYER &&
-           currentScore.getFirstPlayerScore() == GameScoreType.FORTY &&
-           currentScore.getSecondPlayerScore() == GameScoreType.ADVANTAGE
-        ){
+        if (
+                player == PlayerID.FIRST_PLAYER &&
+                        currentScore.getFirstPlayerScore() == GameScoreType.FORTY &&
+                        currentScore.getSecondPlayerScore() == GameScoreType.ADVANTAGE
+        ) {
             result.setFirstPlayerScore(GameScoreType.DEUCE);
             result.setSecondPlayerScore(GameScoreType.DEUCE);
             return result;
         }
-        if(
-            player == PlayerID.SECOND_PLAYER &&
-            currentScore.getSecondPlayerScore() == GameScoreType.FORTY &&
-            currentScore.getFirstPlayerScore() == GameScoreType.ADVANTAGE
-        ){
+        if (
+                player == PlayerID.SECOND_PLAYER &&
+                        currentScore.getSecondPlayerScore() == GameScoreType.FORTY &&
+                        currentScore.getFirstPlayerScore() == GameScoreType.ADVANTAGE
+        ) {
             result.setFirstPlayerScore(GameScoreType.DEUCE);
             result.setSecondPlayerScore(GameScoreType.DEUCE);
             return result;
         }
-        if(
-            (currentScore.getFirstPlayerScore() == GameScoreType.FORTY) &&
-            (currentScore.getSecondPlayerScore() == GameScoreType.FORTY)
-        ){
+        if (
+                (currentScore.getFirstPlayerScore() == GameScoreType.FORTY) &&
+                        (currentScore.getSecondPlayerScore() == GameScoreType.FORTY)
+        ) {
             if (player == PlayerID.FIRST_PLAYER) {
                 result.setFirstPlayerScore(GameScoreType.ADVANTAGE);
             } else {
@@ -52,36 +52,40 @@ public class TennisGame {
             return result;
         }
         if (
-            (player == PlayerID.FIRST_PLAYER) &&
-            (currentScore.getFirstPlayerScore() == GameScoreType.FORTY)
-        ){
+                (player == PlayerID.FIRST_PLAYER) &&
+                        (currentScore.getFirstPlayerScore() == GameScoreType.FORTY)
+        ) {
             result.setFirstPlayerScore(GameScoreType.WIN);
             return result;
         }
         if (
-            (player == PlayerID.SECOND_PLAYER) &&
-            (currentScore.getSecondPlayerScore() == GameScoreType.FORTY)
-        ){
+                (player == PlayerID.SECOND_PLAYER) &&
+                        (currentScore.getSecondPlayerScore() == GameScoreType.FORTY)
+        ) {
             result.setSecondPlayerScore(GameScoreType.WIN);
             return result;
         }
         if (
-            (player == PlayerID.FIRST_PLAYER) &&
-            (currentScore.getFirstPlayerScore().ordinal() >= GameScoreType.LOVE.ordinal()) &&
-            (currentScore.getFirstPlayerScore().ordinal() < GameScoreType.FORTY.ordinal())
+                (player == PlayerID.FIRST_PLAYER) &&
+                        (currentScore.getFirstPlayerScore().ordinal() >= GameScoreType.LOVE.ordinal()) &&
+                        (currentScore.getFirstPlayerScore().ordinal() < GameScoreType.FORTY.ordinal())
         ) {
             result.setFirstPlayerScore(GameScoreType.values()[currentScore.getFirstPlayerScore().ordinal() + 1]);
             return result;
         }
         if (
-            (player == PlayerID.SECOND_PLAYER) &&
-            (currentScore.getFirstPlayerScore().ordinal() >= GameScoreType.LOVE.ordinal()) &&
-            (currentScore.getFirstPlayerScore().ordinal() < GameScoreType.FORTY.ordinal())
+                (player == PlayerID.SECOND_PLAYER) &&
+                        (currentScore.getFirstPlayerScore().ordinal() >= GameScoreType.LOVE.ordinal()) &&
+                        (currentScore.getFirstPlayerScore().ordinal() < GameScoreType.FORTY.ordinal())
         ) {
             result.setSecondPlayerScore(GameScoreType.values()[currentScore.getSecondPlayerScore().ordinal() + 1]);
             return result;
         }
         return result;
+    }
+
+    public TiebreakGameScore nextTiebreakGameScore(PlayerID playerID, TiebreakGameScore currentScore) {
+        return null;
     }
 
     public static void main(String[] args) {
