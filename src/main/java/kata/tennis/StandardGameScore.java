@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -39,8 +40,8 @@ public class StandardGameScore implements GameScore<StandardGameScore> {
     }
 
     @Override
-    public PlayerID whoWonTheGame() {
-        return null;
+    public Optional<PlayerID> whoWonTheGame() {
+        return Optional.empty();
     }
 
     @Override

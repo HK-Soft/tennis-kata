@@ -3,6 +3,8 @@ package kata.tennis;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 public class StandardGameScoreTest {
 
     @Test
@@ -58,7 +60,7 @@ public class StandardGameScoreTest {
     }
 
     @Test
-    public void should_return_win_when_player_scores_will_advantage(){
+    public void should_return_win_when_player_scores_will_advantage() {
         //Given
         TennisGame tennisGame = new TennisGame();
         StandardGameScore fortyAdvantageScore = new StandardGameScore(GameScoreType.FORTY, GameScoreType.ADVANTAGE);
@@ -66,5 +68,16 @@ public class StandardGameScoreTest {
         StandardGameScore shouldBeFortyWin = tennisGame.nextStandardGameScore(PlayerID.SECOND_PLAYER, fortyAdvantageScore);
         //Then
         Assertions.assertEquals(new StandardGameScore(GameScoreType.FORTY, GameScoreType.WIN), shouldBeFortyWin);
+    }
+
+    @Test
+    public void should_return_the_wining_player_when_score_is_win() {
+        //Given
+        StandardGameScore gameScore = new StandardGameScore(GameScoreType.WIN, GameScoreType.LOVE);
+        //When
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        //Then
+        Assertions.assertTrue(mayContainPlayerId.isPresent());
+        Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
     }
 }

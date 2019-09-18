@@ -1,6 +1,7 @@
 package kata.tennis;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class TiebreakGameScore extends SimpleGameScore implements GameScore<SimpleGameScore> {
 
@@ -35,7 +36,7 @@ public class TiebreakGameScore extends SimpleGameScore implements GameScore<Simp
     }
 
     @Override
-    public PlayerID whoWonTheGame() {
+    public Optional<PlayerID> whoWonTheGame() {
         return null;
     }
 

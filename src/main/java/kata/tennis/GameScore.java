@@ -1,8 +1,10 @@
 package kata.tennis;
 
+import java.util.Optional;
+
 public interface GameScore<T> {
 
-    PlayerID whoWonTheGame();
+    Optional<PlayerID> whoWonTheGame();
 
     T getScore();
 }
