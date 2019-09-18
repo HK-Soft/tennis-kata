@@ -95,7 +95,7 @@ public class TennisGame {
         return result;
     }
 
-    public SetScore nextSetScore(GameScore currentGame, SetScore setScore) {
+    public SetScore nextSetScore(GameScore currentGame, SetScore currentSetScore) {
         return null;
     }
 
