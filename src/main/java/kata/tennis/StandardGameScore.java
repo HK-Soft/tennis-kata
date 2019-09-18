@@ -41,6 +41,10 @@ public class StandardGameScore implements GameScore<StandardGameScore> {
 
     @Override
     public Optional<PlayerID> whoWonTheGame() {
+        if (getFirstPlayerScore() == GameScoreType.WIN)
+            return Optional.of(PlayerID.FIRST_PLAYER);
+        if (getSecondPlayerScore() == GameScoreType.WIN)
+            return Optional.of(PlayerID.SECOND_PLAYER);
         return Optional.empty();
     }
 

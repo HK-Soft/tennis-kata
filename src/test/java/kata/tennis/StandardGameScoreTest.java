@@ -80,4 +80,5 @@ public class StandardGameScoreTest {
         Assertions.assertTrue(mayContainPlayerId.isPresent());
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
     }
+
 }
