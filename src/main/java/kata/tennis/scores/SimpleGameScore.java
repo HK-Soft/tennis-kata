@@ -28,4 +28,11 @@ public class SimpleGameScore {
     public int hashCode() {
         return Objects.hash(firstPlayerScore, secondPlayerScore);
     }
+
+    public String toString() {
+        return "(" + getFirstPlayerScore() + "-" + getSecondPlayerScore() + ")";
+    }
+
+
+
 }
