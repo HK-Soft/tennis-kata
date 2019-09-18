@@ -5,6 +5,8 @@ import kata.tennis.scores.SetScore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 public class MatchScoreTest {
 
     @Test
@@ -29,6 +31,17 @@ public class MatchScoreTest {
         MatchScore result = tennisGame.nextMatchScore(setScore, matchScore);
         //Then
         Assertions.assertEquals(matchScore, result);
+    }
+
+    @Test
+    public void should_return_the_wining_player_when_score_is_more_equal_3() {
+        //Given
+        MatchScore matchScore = new MatchScore(2, 3);
+        //When
+        Optional<PlayerID> mayContianPlayerId = matchScore.whoWonTheGame();
+        //Then
+        Assertions.assertTrue(mayContianPlayerId.isPresent());
+        Assertions.assertEquals(Optional.of(PlayerID.SECOND_PLAYER), mayContianPlayerId);
     }
 
 }
