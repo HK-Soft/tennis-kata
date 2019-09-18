@@ -8,6 +8,17 @@ public class TennisGame {
 
     public StandardGameScore nextStandardGameScore(PlayerID player, StandardGameScore currentScore) {
         StandardGameScore result = currentScore.copy();
+        if(
+            (currentScore.getFirstPlayerScore() == GameScoreType.FORTY) &&
+            (currentScore.getSecondPlayerScore() == GameScoreType.FORTY)
+        ){
+            if (player == PlayerID.FIRST_PLAYER) {
+                result.setFirstPlayerScore(GameScoreType.ADVANTAGE);
+            } else {
+                result.setSecondPlayerScore(GameScoreType.ADVANTAGE);
+            }
+            return result;
+        }
         if (
             (player == PlayerID.FIRST_PLAYER) &&
             (currentScore.getFirstPlayerScore() == GameScoreType.FORTY)
