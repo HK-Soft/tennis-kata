@@ -134,6 +134,28 @@ public class TennisGameTest {
         expectedMatch.add(new MatchScore(0, 0));
         expectedMatch.add(new MatchScore(1, 0));
         Assertions.assertIterableEquals(expectedMatch, result.getMatches());
+    }
 
+    @Test
+    public void should_update_match_score_when_set_is_won_by_tiebreak() {
+        //Given
+        TennisGame tennisGame = new TennisGame();
+        //When
+        tennisGame.score(PlayerID.FIRST_PLAYER);
+        GameStatus result = tennisGame.getGameStatus();
+        result.getScore().add(new SetScore(6, 6));
+        result.getTiebreaks().add(new TiebreakGameScore(7,5));
+        tennisGame.score(PlayerID.FIRST_PLAYER);
+        //Then
+        List<SimpleGameScore> expectedScore = new ArrayList<>();
+        expectedScore.add(new SetScore(0, 0));
+        expectedScore.add(new SetScore(6, 6));
+        expectedScore.add(new SetScore(0, 0));
+        Assertions.assertIterableEquals(expectedScore, result.getScore());
+
+        List<MatchScore> expectedMatch = new ArrayList<>();
+        expectedMatch.add(new MatchScore(0, 0));
+        expectedMatch.add(new MatchScore(1, 0));
+        Assertions.assertIterableEquals(expectedMatch, result.getMatches());
     }
 }

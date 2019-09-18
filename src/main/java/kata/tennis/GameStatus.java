@@ -1,9 +1,6 @@
 package kata.tennis;
 
-import kata.tennis.scores.MatchScore;
-import kata.tennis.scores.SetScore;
-import kata.tennis.scores.SimpleGameScore;
-import kata.tennis.scores.StandardGameScore;
+import kata.tennis.scores.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +22,7 @@ public class GameStatus {
     private List<SetScore> score = new ArrayList<>();
     private List<StandardGameScore> status = new ArrayList<>();
     private List<MatchScore> matches = new ArrayList<>();
+    private List<TiebreakGameScore> tiebreaks = new ArrayList<>();
 
     public Optional<StandardGameScore> getCurrentGameStatus() {
         if (!this.status.isEmpty())
