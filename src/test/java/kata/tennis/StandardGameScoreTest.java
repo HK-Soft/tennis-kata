@@ -32,4 +32,17 @@ public class StandardGameScoreTest {
         Assertions.assertEquals(new StandardGameScore(GameScoreType.WIN, GameScoreType.LOVE), shouldBeWinLove);
         Assertions.assertEquals(new StandardGameScore(GameScoreType.THIRTY, GameScoreType.WIN), shouldBeThirtyWin);
     }
+
+    @Test
+    public void should_return_advantage_when_both_players_score_is_40() {
+        //Given
+        TennisGame tennisGame = new TennisGame();
+        StandardGameScore fortyFortyScore = new StandardGameScore(GameScoreType.FORTY, GameScoreType.FORTY);
+        //When
+        StandardGameScore shouldBeAdvantageForty = tennisGame.nextStandardGameScore(PlayerID.FIRST_PLAYER, fortyFortyScore);
+        StandardGameScore shouldBeFortyAdvantage = tennisGame.nextStandardGameScore(PlayerID.SECOND_PLAYER, fortyFortyScore);
+        //Then
+        Assertions.assertEquals(new StandardGameScore(GameScoreType.ADVANTAGE, GameScoreType.FORTY), shouldBeAdvantageForty);
+        Assertions.assertEquals(new StandardGameScore(GameScoreType.FORTY, GameScoreType.ADVANTAGE), shouldBeFortyAdvantage);
+    }
 }
