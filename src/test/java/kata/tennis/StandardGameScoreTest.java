@@ -81,4 +81,14 @@ public class StandardGameScoreTest {
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
     }
 
+
+    @Test
+    public void should_return_empty_when_no_winner() {
+        //Given
+        StandardGameScore gameScore = new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE);
+        //When
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        //Then
+        Assertions.assertFalse(mayContainPlayerId.isPresent());
+    }
 }
