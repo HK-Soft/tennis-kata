@@ -26,14 +26,18 @@ public class TennisGame {
         SetScore currentScore = gameStatus.getCurrentGameScore().orElse(new SetScore(0, 0));
         SetScore setScore = nextSetScore(gameScore, currentScore);
 
-        MatchScore matchScore = nextMatchScore(setScore, new MatchScore(0, 0));
+        MatchScore currentMatchScore = gameStatus.getCurrentGameMatch().orElse(new MatchScore(0, 0));
+        MatchScore matchScore = nextMatchScore(setScore, currentMatchScore);
 
         this.gameStatus.getStatus().add(gameScore);
-        if(gameScore.whoWonTheGame().isPresent())
-            this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE,GameScoreType.LOVE));
+        if (gameScore.whoWonTheGame().isPresent())
+            this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
 
         this.gameStatus.getScore().add(setScore);
-        this.gameStatus.getMatches().add(matchScore.getScore());
+        if (setScore.whoWonTheGame().isPresent())
+            this.gameStatus.getScore().add(new SetScore(0, 0));
+
+        this.gameStatus.getMatches().add(matchScore);
     }
 
     public StandardGameScore nextStandardGameScore(PlayerID player, StandardGameScore currentScore) {

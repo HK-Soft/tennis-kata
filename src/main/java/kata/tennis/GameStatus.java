@@ -1,5 +1,6 @@
 package kata.tennis;
 
+import kata.tennis.scores.MatchScore;
 import kata.tennis.scores.SetScore;
 import kata.tennis.scores.SimpleGameScore;
 import kata.tennis.scores.StandardGameScore;
@@ -23,7 +24,7 @@ public class GameStatus {
     private String secondPlayerName = "nom du joueur2";
     private List<SetScore> score = new ArrayList<>();
     private List<StandardGameScore> status = new ArrayList<>();
-    private List<SimpleGameScore> matches = new ArrayList<>();
+    private List<MatchScore> matches = new ArrayList<>();
 
     public Optional<StandardGameScore> getCurrentGameStatus() {
         if (!this.status.isEmpty())
@@ -34,6 +35,12 @@ public class GameStatus {
     public Optional<SetScore> getCurrentGameScore() {
         if(!this.score.isEmpty())
             return Optional.of(this.score.get(this.score.size()-1));
+        return Optional.empty();
+    }
+
+    public Optional<MatchScore> getCurrentGameMatch() {
+        if(!this.matches.isEmpty())
+            return Optional.of(this.matches.get(this.matches.size()-1));
         return Optional.empty();
     }
 }

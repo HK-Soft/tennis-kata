@@ -1,9 +1,6 @@
 package kata.tennis;
 
-import kata.tennis.scores.GameScoreType;
-import kata.tennis.scores.SetScore;
-import kata.tennis.scores.SimpleGameScore;
-import kata.tennis.scores.StandardGameScore;
+import kata.tennis.scores.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -122,19 +119,20 @@ public class TennisGameTest {
         //When
         tennisGame.score(PlayerID.FIRST_PLAYER);
         GameStatus result = tennisGame.getGameStatus();
-        result.getScore().add(new SetScore(6,4));
+        result.getStatus().add(new StandardGameScore(GameScoreType.FORTY, GameScoreType.LOVE));
+        result.getScore().add(new SetScore(5, 4));
         tennisGame.score(PlayerID.FIRST_PLAYER);
         //Then
         List<SimpleGameScore> expectedScore = new ArrayList<>();
         expectedScore.add(new SetScore(0, 0));
+        expectedScore.add(new SetScore(5, 4));
         expectedScore.add(new SetScore(6, 4));
         expectedScore.add(new SetScore(0, 0));
         Assertions.assertIterableEquals(expectedScore, result.getScore());
 
-        List<SimpleGameScore> expectedMatch = new ArrayList<>();
-        expectedMatch.add(new SimpleGameScore(0, 0));
-        expectedMatch.add(new SimpleGameScore(0, 0));
-        expectedMatch.add(new SimpleGameScore(1, 0));
+        List<MatchScore> expectedMatch = new ArrayList<>();
+        expectedMatch.add(new MatchScore(0, 0));
+        expectedMatch.add(new MatchScore(1, 0));
         Assertions.assertIterableEquals(expectedMatch, result.getMatches());
 
     }
