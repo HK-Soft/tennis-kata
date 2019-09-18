@@ -91,4 +91,5 @@ public class StandardGameScoreTest {
         //Then
         Assertions.assertFalse(mayContainPlayerId.isPresent());
     }
+
 }

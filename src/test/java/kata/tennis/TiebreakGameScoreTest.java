@@ -29,4 +29,23 @@ public class TiebreakGameScoreTest {
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
     }
 
+    @Test
+    public void should_return_empty_when_players_score_is_less_then_7() {
+        //Given
+        TiebreakGameScore gameScore = new TiebreakGameScore(0, 0);
+        //When
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        //Then
+        Assertions.assertFalse(mayContainPlayerId.isPresent());
+    }
+
+    @Test
+    public void should_return_empty_when_players_diff_is_les_then_2() {
+        //Given
+        TiebreakGameScore gameScore = new TiebreakGameScore(8, 7);
+        //When
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        //Then
+        Assertions.assertFalse(mayContainPlayerId.isPresent());
+    }
 }
