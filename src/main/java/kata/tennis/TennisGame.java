@@ -145,7 +145,7 @@ public class TennisGame {
         return result;
     }
 
-    public SetScore nextSetScore(GameScore<?> currentGame, SetScore currentSetScore) {
+    public SetScore nextSetScore(GameScore currentGame, SetScore currentSetScore) {
         if (currentSetScore.whoWon().isPresent())
             return currentSetScore;
         SetScore result = currentSetScore.copy();

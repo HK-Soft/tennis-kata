@@ -4,7 +4,7 @@ import kata.tennis.PlayerID;
 
 import java.util.Optional;
 
-public interface GameScore<T> {
+public interface GameScore {
 
     Optional<PlayerID> whoWon();
 

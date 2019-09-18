@@ -5,7 +5,7 @@ import kata.tennis.PlayerID;
 import java.util.Objects;
 import java.util.Optional;
 
-public class MatchScore extends SimpleGameScore implements GameScore<SimpleGameScore> {
+public class MatchScore extends SimpleGameScore implements GameScore {
 
     public MatchScore() {
         super();

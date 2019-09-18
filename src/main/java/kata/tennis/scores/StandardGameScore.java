@@ -13,7 +13,7 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StandardGameScore implements GameScore<SimpleGameScore> {
+public class StandardGameScore implements GameScore {
 
     private GameScoreType firstPlayerScore = GameScoreType.LOVE;
     private GameScoreType secondPlayerScore = GameScoreType.LOVE;
