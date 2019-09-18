@@ -46,4 +46,15 @@ public class SetScoreTest {
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayer);
     }
 
+    @Test
+    public void should_return_the_wining_player_when_both_player_have_6_tiebreak(){
+        //Given
+        SetScore setScore = new SetScore(6, 7);
+        //When
+        Optional<PlayerID> mayContainPlayer = setScore.whoWonTheGame();
+        //Then
+        Assertions.assertTrue(mayContainPlayer.isPresent());
+        Assertions.assertEquals(Optional.of(PlayerID.SECOND_PLAYER), mayContainPlayer);
+    }
+
 }
