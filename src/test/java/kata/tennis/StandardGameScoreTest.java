@@ -18,4 +18,18 @@ public class StandardGameScoreTest {
         Assertions.assertEquals(new StandardGameScore(GameScoreType.FIFTEEN, GameScoreType.LOVE), shouldBeFifteenLove);
         Assertions.assertEquals(new StandardGameScore(GameScoreType.THIRTY, GameScoreType.THIRTY), shouldBeThirtyThirty);
     }
+
+    @Test
+    public void should_return_win_when_one_player_score_is_40_then_scores() {
+        //Given
+        TennisGame tennisGame = new TennisGame();
+        StandardGameScore thirtyFortyScore = new StandardGameScore(GameScoreType.THIRTY, GameScoreType.FORTY);
+        StandardGameScore fortyLoveScore = new StandardGameScore(GameScoreType.FORTY, GameScoreType.LOVE);
+        //When
+        StandardGameScore shouldBeWinLove = tennisGame.nextStandardGameScore(PlayerID.FIRST_PLAYER, fortyLoveScore);
+        StandardGameScore shouldBeThirtyWin = tennisGame.nextStandardGameScore(PlayerID.SECOND_PLAYER, thirtyFortyScore);
+        //Then
+        Assertions.assertEquals(new StandardGameScore(GameScoreType.WIN, GameScoreType.LOVE), shouldBeWinLove);
+        Assertions.assertEquals(new StandardGameScore(GameScoreType.THIRTY, GameScoreType.WIN), shouldBeThirtyWin);
+    }
 }
