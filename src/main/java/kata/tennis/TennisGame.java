@@ -85,7 +85,12 @@ public class TennisGame {
     }
 
     public TiebreakGameScore nextTiebreakGameScore(PlayerID playerID, TiebreakGameScore currentScore) {
-        return null;
+        TiebreakGameScore result = currentScore.copy();
+        if (playerID == PlayerID.FIRST_PLAYER)
+            result.setFirstPlayerScore(currentScore.getFirstPlayerScore() + 1);
+        else
+            result.setSecondPlayerScore(currentScore.getSecondPlayerScore() + 1);
+        return result;
     }
 
     public static void main(String[] args) {
