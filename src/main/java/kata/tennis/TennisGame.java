@@ -1,12 +1,25 @@
 package kata.tennis;
 
 import kata.tennis.scores.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.logging.Logger;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TennisGame {
 
     private static final Logger LOGGER = Logger.getLogger(TennisGame.class.getName());
+
+    private GameStatus gameStatus = new GameStatus();
+
+    public void score(PlayerID playerID) {
+    }
 
     public StandardGameScore nextStandardGameScore(PlayerID player, StandardGameScore currentScore) {
         StandardGameScore result = currentScore.copy();
@@ -108,6 +121,8 @@ public class TennisGame {
     }
 
     public MatchScore nextMatchScore(SetScore currentSetScore, MatchScore currentMatchScore) {
+        if (currentMatchScore.whoWonTheGame().isPresent())
+            return currentMatchScore;
         MatchScore result = currentMatchScore.copy();
         currentSetScore.whoWonTheGame().ifPresent(playerID -> {
             if (playerID == PlayerID.FIRST_PLAYER) {

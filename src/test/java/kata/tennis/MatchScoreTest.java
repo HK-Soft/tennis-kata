@@ -34,6 +34,18 @@ public class MatchScoreTest {
     }
 
     @Test
+    public void should_return_the_same_score_when_match_is_won(){
+        //Given
+        SetScore setScore = new SetScore(4, 6);
+        MatchScore matchScore = new MatchScore(2, 3);
+        TennisGame tennisGame = new TennisGame();
+        //When
+        MatchScore result = tennisGame.nextMatchScore(setScore, matchScore);
+        //Then
+        Assertions.assertEquals(matchScore, result);
+    }
+
+    @Test
     public void should_return_the_wining_player_when_score_is_more_equal_3() {
         //Given
         MatchScore matchScore = new MatchScore(2, 3);
