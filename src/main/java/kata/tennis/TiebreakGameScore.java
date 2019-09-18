@@ -37,6 +37,11 @@ public class TiebreakGameScore extends SimpleGameScore implements GameScore<Simp
 
     @Override
     public Optional<PlayerID> whoWonTheGame() {
+        int diff = getFirstPlayerScore() - getSecondPlayerScore();
+        if (getFirstPlayerScore() >= 7 && diff >= 2)
+            return Optional.of(PlayerID.FIRST_PLAYER);
+        if (getSecondPlayerScore() >= 7 && diff <= -2)
+            return Optional.of(PlayerID.FIRST_PLAYER);
         return Optional.empty();
     }
 
