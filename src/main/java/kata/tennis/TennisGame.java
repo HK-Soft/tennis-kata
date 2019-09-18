@@ -33,7 +33,6 @@ public class TennisGame {
             this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE,GameScoreType.LOVE));
 
         this.gameStatus.getScore().add(setScore);
-
         this.gameStatus.getMatches().add(matchScore.getScore());
     }
 
