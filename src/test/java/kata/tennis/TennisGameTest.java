@@ -66,6 +66,7 @@ public class TennisGameTest {
         List<StandardGameScore> expectedStatus = new ArrayList<>();
         expectedStatus.add(new StandardGameScore(GameScoreType.FIFTEEN, GameScoreType.LOVE));
         expectedStatus.add(new StandardGameScore(GameScoreType.FIFTEEN, GameScoreType.FORTY));
+        expectedStatus.add(new StandardGameScore(GameScoreType.FIFTEEN, GameScoreType.WIN));
         expectedStatus.add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
 
         Assertions.assertIterableEquals(expectedStatus, result.getStatus());
@@ -97,6 +98,7 @@ public class TennisGameTest {
         expectedStatus.add(new StandardGameScore(GameScoreType.FORTY, GameScoreType.FORTY));
         expectedStatus.add(new StandardGameScore(GameScoreType.FORTY, GameScoreType.ADVANTAGE));
         expectedStatus.add(new StandardGameScore(GameScoreType.FORTY, GameScoreType.WIN));
+        expectedStatus.add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
 
         Assertions.assertIterableEquals(expectedStatus, result.getStatus());
 

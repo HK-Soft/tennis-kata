@@ -22,19 +22,15 @@ public class TennisGame {
         StandardGameScore currentGameScore = gameStatus.getCurrentGameStatus()
                 .orElse(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
         StandardGameScore gameScore = nextStandardGameScore(playerID, currentGameScore);
-        SetScore currentScore = gameStatus.getCurrentGameScore().orElse(new SetScore(0, 0));
 
+        SetScore currentScore = gameStatus.getCurrentGameScore().orElse(new SetScore(0, 0));
         SetScore setScore = nextSetScore(gameScore, currentScore);
 
         MatchScore matchScore = nextMatchScore(setScore, new MatchScore(0, 0));
 
-        if (currentScore.getFirstPlayerScore() != setScore.getFirstPlayerScore() ||
-                currentScore.getSecondPlayerScore() != setScore.getSecondPlayerScore()) {
-            this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
-        } else {
-            this.gameStatus.getStatus().add(gameScore);
-        }
-
+        this.gameStatus.getStatus().add(gameScore);
+        if(gameScore.whoWonTheGame().isPresent())
+            this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE,GameScoreType.LOVE));
 
         this.gameStatus.getScore().add(setScore);
 
