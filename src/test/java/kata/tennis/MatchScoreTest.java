@@ -44,4 +44,14 @@ public class MatchScoreTest {
         Assertions.assertEquals(Optional.of(PlayerID.SECOND_PLAYER), mayContianPlayerId);
     }
 
+    @Test
+    public void should_return_empty_when_no_player_won() {
+        //Given
+        MatchScore matchScore = new MatchScore(2, 2);
+        //When
+        Optional<PlayerID> mayContianPlayerId = matchScore.whoWonTheGame();
+        //Then
+        Assertions.assertFalse(mayContianPlayerId.isPresent());
+    }
+
 }
