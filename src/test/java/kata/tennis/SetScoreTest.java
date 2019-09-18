@@ -7,6 +7,8 @@ import kata.tennis.scores.TiebreakGameScore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 public class SetScoreTest {
 
     @Test
@@ -32,4 +34,16 @@ public class SetScoreTest {
         //Then
         Assertions.assertEquals(new SetScore(4, 4), result);
     }
+
+    @Test
+    public void should_return_the_wining_player_when_score_difference_2_and_above_6() {
+        //Given
+        SetScore setScore = new SetScore(7, 5);
+        //When
+        Optional<PlayerID> mayContainPlayer = setScore.whoWonTheGame();
+        //Then
+        Assertions.assertTrue(mayContainPlayer.isPresent());
+        Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayer);
+    }
+
 }
