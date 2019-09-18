@@ -36,6 +36,18 @@ public class SetScoreTest {
     }
 
     @Test
+    public void should_return_the_same_set_score_when_set_is_won(){
+        //Given
+        TennisGame tennisGame = new TennisGame();
+        SetScore currentSetScore = new SetScore(3, 6);
+        StandardGameScore winStandardGameScore = new StandardGameScore(GameScoreType.LOVE, GameScoreType.WIN);
+        //When
+        SetScore result = tennisGame.nextSetScore(winStandardGameScore, currentSetScore);
+        //Then
+        Assertions.assertEquals(currentSetScore, result);
+    }
+
+    @Test
     public void should_return_the_wining_player_when_score_difference_2_and_above_6() {
         //Given
         SetScore setScore = new SetScore(7, 5);
