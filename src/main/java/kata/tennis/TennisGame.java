@@ -2,6 +2,7 @@ package kata.tennis;
 
 import kata.tennis.scores.*;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class TennisGame {
@@ -96,6 +97,8 @@ public class TennisGame {
     }
 
     public SetScore nextSetScore(GameScore<?> currentGame, SetScore currentSetScore) {
+        if (currentSetScore.whoWonTheGame().isPresent())
+            return currentSetScore;
         SetScore result = currentSetScore.copy();
         currentGame.whoWonTheGame().ifPresent(playerId -> {
             if (playerId == PlayerID.FIRST_PLAYER)
