@@ -18,4 +18,17 @@ public class MatchScoreTest {
         //Then
         Assertions.assertEquals(new MatchScore(0, 1), result);
     }
+
+    @Test
+    public void should_return_the_same_score_when_set_is_not_won() {
+        //Given
+        SetScore setScore = new SetScore(4, 5);
+        MatchScore matchScore = new MatchScore(0, 0);
+        TennisGame tennisGame = new TennisGame();
+        //When
+        MatchScore result = tennisGame.nextMatchScore(setScore, matchScore);
+        //Then
+        Assertions.assertEquals(matchScore, result);
+    }
+
 }
