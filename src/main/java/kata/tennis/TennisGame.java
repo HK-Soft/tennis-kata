@@ -1,5 +1,7 @@
 package kata.tennis;
 
+import kata.tennis.scores.*;
+
 import java.util.logging.Logger;
 
 public class TennisGame {
@@ -91,6 +93,10 @@ public class TennisGame {
         else
             result.setSecondPlayerScore(currentScore.getSecondPlayerScore() + 1);
         return result;
+    }
+
+    public SetScore nextSetScore(GameScore currentGame, SetScore setScore) {
+        return null;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
-package kata.tennis;
+package kata.tennis.scores;
 
+import kata.tennis.PlayerID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

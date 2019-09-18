@@ -1,4 +1,4 @@
-package kata.tennis;
+package kata.tennis.scores;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

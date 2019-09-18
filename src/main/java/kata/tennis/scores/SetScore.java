@@ -1,15 +1,17 @@
-package kata.tennis;
+package kata.tennis.scores;
+
+import kata.tennis.PlayerID;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class TiebreakGameScore extends SimpleGameScore implements GameScore<SimpleGameScore> {
+public class SetScore extends SimpleGameScore implements GameScore<SimpleGameScore> {
 
-    public TiebreakGameScore() {
+    public SetScore() {
         super();
     }
 
-    public TiebreakGameScore(int firstPlayerScore, int secondPlayerScore) {
+    public SetScore(int firstPlayerScore, int secondPlayerScore) {
         super(firstPlayerScore, secondPlayerScore);
     }
 
@@ -37,17 +39,11 @@ public class TiebreakGameScore extends SimpleGameScore implements GameScore<Simp
 
     @Override
     public Optional<PlayerID> whoWonTheGame() {
-        int diff = getFirstPlayerScore() - getSecondPlayerScore();
-        if (getFirstPlayerScore() >= 7 && diff >= 2)
-            return Optional.of(PlayerID.FIRST_PLAYER);
-        if (getSecondPlayerScore() >= 7 && diff <= -2)
-            return Optional.of(PlayerID.FIRST_PLAYER);
         return Optional.empty();
     }
 
-
     @Override
     public SimpleGameScore getScore() {
-        return this;
+        return null;
     }
 }

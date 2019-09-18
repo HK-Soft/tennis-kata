@@ -1,5 +1,7 @@
 package kata.tennis;
 
+import kata.tennis.scores.GameScoreType;
+import kata.tennis.scores.StandardGameScore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

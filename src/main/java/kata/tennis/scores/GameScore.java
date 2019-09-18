@@ -1,4 +1,6 @@
-package kata.tennis;
+package kata.tennis.scores;
+
+import kata.tennis.PlayerID;
 
 import java.util.Optional;
 
