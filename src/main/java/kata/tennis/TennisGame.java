@@ -19,6 +19,12 @@ public class TennisGame {
     private GameStatus gameStatus = new GameStatus();
 
     public void score(PlayerID playerID) {
+        StandardGameScore gameScore = nextStandardGameScore(playerID, new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
+        SetScore setScore = nextSetScore(gameScore, new SetScore(0, 0));
+        MatchScore matchScore = nextMatchScore(setScore, new MatchScore(0, 0));
+        this.gameStatus.getStatus().add(gameScore.getScore());
+        this.gameStatus.getScore().add(setScore.getScore());
+        this.gameStatus.getMatches().add(matchScore.getScore());
     }
 
     public StandardGameScore nextStandardGameScore(PlayerID player, StandardGameScore currentScore) {

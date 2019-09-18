@@ -51,6 +51,6 @@ public class SetScore extends SimpleGameScore implements GameScore<SimpleGameSco
 
     @Override
     public SimpleGameScore getScore() {
-        return null;
+        return new SimpleGameScore(getFirstPlayerScore(),getSecondPlayerScore());
     }
 }

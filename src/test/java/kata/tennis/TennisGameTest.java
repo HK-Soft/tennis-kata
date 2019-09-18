@@ -4,7 +4,6 @@ import kata.tennis.scores.SimpleGameScore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.Collections;
 
 public class TennisGameTest {

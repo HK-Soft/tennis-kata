@@ -13,7 +13,7 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StandardGameScore implements GameScore<StandardGameScore> {
+public class StandardGameScore implements GameScore<SimpleGameScore> {
 
     private GameScoreType firstPlayerScore = GameScoreType.LOVE;
     private GameScoreType secondPlayerScore = GameScoreType.LOVE;
@@ -50,7 +50,7 @@ public class StandardGameScore implements GameScore<StandardGameScore> {
     }
 
     @Override
-    public StandardGameScore getScore() {
-        return null;
+    public SimpleGameScore getScore() {
+        return new SimpleGameScore(firstPlayerScore.getScore(), secondPlayerScore.getScore());
     }
 }

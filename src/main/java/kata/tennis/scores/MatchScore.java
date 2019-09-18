@@ -49,6 +49,6 @@ public class MatchScore extends SimpleGameScore implements GameScore<SimpleGameS
 
     @Override
     public SimpleGameScore getScore() {
-        return null;
+        return new SimpleGameScore(getFirstPlayerScore(),getSecondPlayerScore());
     }
 }
