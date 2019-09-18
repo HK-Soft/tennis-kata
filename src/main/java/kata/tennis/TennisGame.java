@@ -19,21 +19,39 @@ public class TennisGame {
     private GameStatus gameStatus = new GameStatus();
 
     public void score(PlayerID playerID) {
+        boolean tiebreak = false;
+        SetScore currentScore = gameStatus.getCurrentGameScore().orElse(new SetScore(0, 0));
         StandardGameScore currentGameScore = gameStatus.getCurrentGameStatus()
                 .orElse(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
-        StandardGameScore gameScore = nextStandardGameScore(playerID, currentGameScore);
 
-        SetScore currentScore = gameStatus.getCurrentGameScore().orElse(new SetScore(0, 0));
-        SetScore setScore = nextSetScore(gameScore, currentScore);
-
+        GameScore gameScore;
+        if (currentScore.getSecondPlayerScore() == 6 &&
+                currentScore.getFirstPlayerScore() == 6) {
+            TiebreakGameScore currentTiebreakBreak = gameStatus.getCurrentTiebreakScore()
+                    .orElse(new TiebreakGameScore(0, 0));
+            gameScore = nextTiebreakGameScore(playerID, currentTiebreakBreak);
+            tiebreak = true;
+        } else {
+            gameScore = nextStandardGameScore(playerID, currentGameScore);
+            this.gameStatus.getStatus().add((StandardGameScore) gameScore);
+        }
+        SetScore setScore;
+        if (!tiebreak)
+            setScore = nextSetScore(gameScore, currentScore);
+        else {
+            setScore = (playerID == PlayerID.FIRST_PLAYER) ?
+                    new SetScore(currentScore.getFirstPlayerScore() + 1, currentScore.getSecondPlayerScore()) :
+                    new SetScore(currentScore.getFirstPlayerScore(), currentScore.getSecondPlayerScore() + 1);
+        }
         MatchScore currentMatchScore = gameStatus.getCurrentGameMatch().orElse(new MatchScore(0, 0));
         MatchScore matchScore = nextMatchScore(setScore, currentMatchScore);
 
-        this.gameStatus.getStatus().add(gameScore);
+
         if (gameScore.whoWonTheGame().isPresent())
             this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
 
-        this.gameStatus.getScore().add(setScore);
+        if (!tiebreak)
+            this.gameStatus.getScore().add(setScore);
         if (setScore.whoWonTheGame().isPresent())
             this.gameStatus.getScore().add(new SetScore(0, 0));
 
