@@ -9,6 +9,24 @@ public class TennisGame {
     public StandardGameScore nextStandardGameScore(PlayerID player, StandardGameScore currentScore) {
         StandardGameScore result = currentScore.copy();
         if(
+           player == PlayerID.FIRST_PLAYER &&
+           currentScore.getFirstPlayerScore() == GameScoreType.FORTY &&
+           currentScore.getSecondPlayerScore() == GameScoreType.ADVANTAGE
+        ){
+            result.setFirstPlayerScore(GameScoreType.DEUCE);
+            result.setSecondPlayerScore(GameScoreType.DEUCE);
+            return result;
+        }
+        if(
+            player == PlayerID.SECOND_PLAYER &&
+            currentScore.getSecondPlayerScore() == GameScoreType.FORTY &&
+            currentScore.getFirstPlayerScore() == GameScoreType.ADVANTAGE
+        ){
+            result.setFirstPlayerScore(GameScoreType.DEUCE);
+            result.setSecondPlayerScore(GameScoreType.DEUCE);
+            return result;
+        }
+        if(
             (currentScore.getFirstPlayerScore() == GameScoreType.FORTY) &&
             (currentScore.getSecondPlayerScore() == GameScoreType.FORTY)
         ){
