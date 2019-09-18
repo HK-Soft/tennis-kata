@@ -50,7 +50,7 @@ public class MatchScoreTest {
         //Given
         MatchScore matchScore = new MatchScore(2, 3);
         //When
-        Optional<PlayerID> mayContianPlayerId = matchScore.whoWonTheGame();
+        Optional<PlayerID> mayContianPlayerId = matchScore.whoWon();
         //Then
         Assertions.assertTrue(mayContianPlayerId.isPresent());
         Assertions.assertEquals(Optional.of(PlayerID.SECOND_PLAYER), mayContianPlayerId);
@@ -61,7 +61,7 @@ public class MatchScoreTest {
         //Given
         MatchScore matchScore = new MatchScore(2, 2);
         //When
-        Optional<PlayerID> mayContianPlayerId = matchScore.whoWonTheGame();
+        Optional<PlayerID> mayContianPlayerId = matchScore.whoWon();
         //Then
         Assertions.assertFalse(mayContianPlayerId.isPresent());
     }

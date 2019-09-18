@@ -22,7 +22,7 @@ public class TennisGameTest {
         Assertions.assertIterableEquals(Collections.singleton(new StandardGameScore(GameScoreType.FIFTEEN, GameScoreType.LOVE))
                 , result.getStatus());
         Assertions.assertIterableEquals(Collections.singleton(new SetScore(0, 0)), result.getScore());
-        Assertions.assertIterableEquals(Collections.singleton(new SimpleGameScore(0, 0)), result.getMatches());
+        Assertions.assertIterableEquals(Collections.singleton(new MatchScore(0, 0)), result.getMatches());
     }
 
     @Test
@@ -44,9 +44,9 @@ public class TennisGameTest {
         expectedScore.add(new SetScore(0, 0));
         Assertions.assertIterableEquals(expectedScore, result.getScore());
 
-        List<SimpleGameScore> expectedMatch = new ArrayList<>();
-        expectedMatch.add(new SimpleGameScore(0, 0));
-        expectedMatch.add(new SimpleGameScore(0, 0));
+        List<MatchScore> expectedMatch = new ArrayList<>();
+        expectedMatch.add(new MatchScore(0, 0));
+        expectedMatch.add(new MatchScore(0, 0));
         Assertions.assertIterableEquals(expectedMatch, result.getMatches());
     }
 
@@ -73,9 +73,9 @@ public class TennisGameTest {
         expectedScore.add(new SetScore(0, 1));
         Assertions.assertIterableEquals(expectedScore, result.getScore());
 
-        List<SimpleGameScore> expectedMatch = new ArrayList<>();
-        expectedMatch.add(new SimpleGameScore(0, 0));
-        expectedMatch.add(new SimpleGameScore(0, 0));
+        List<MatchScore> expectedMatch = new ArrayList<>();
+        expectedMatch.add(new MatchScore(0, 0));
+        expectedMatch.add(new MatchScore(0, 0));
         Assertions.assertIterableEquals(expectedMatch, result.getMatches());
     }
 
@@ -105,10 +105,10 @@ public class TennisGameTest {
         expectedScore.add(new SetScore(0, 1));
         Assertions.assertIterableEquals(expectedScore, result.getScore());
 
-        List<SimpleGameScore> expectedMatch = new ArrayList<>();
-        expectedMatch.add(new SimpleGameScore(0, 0));
-        expectedMatch.add(new SimpleGameScore(0, 0));
-        expectedMatch.add(new SimpleGameScore(0, 0));
+        List<MatchScore> expectedMatch = new ArrayList<>();
+        expectedMatch.add(new MatchScore(0, 0));
+        expectedMatch.add(new MatchScore(0, 0));
+        expectedMatch.add(new MatchScore(0, 0));
         Assertions.assertIterableEquals(expectedMatch, result.getMatches());
     }
 
@@ -144,8 +144,9 @@ public class TennisGameTest {
         tennisGame.score(PlayerID.FIRST_PLAYER);
         GameStatus result = tennisGame.getGameStatus();
         result.getScore().add(new SetScore(6, 6));
-        result.getTiebreaks().add(new TiebreakGameScore(7,5));
+        result.getTiebreaks().add(new TiebreakGameScore(6,5));
         tennisGame.score(PlayerID.FIRST_PLAYER);
+
         //Then
         List<SimpleGameScore> expectedScore = new ArrayList<>();
         expectedScore.add(new SetScore(0, 0));
@@ -157,5 +158,8 @@ public class TennisGameTest {
         expectedMatch.add(new MatchScore(0, 0));
         expectedMatch.add(new MatchScore(1, 0));
         Assertions.assertIterableEquals(expectedMatch, result.getMatches());
+
     }
+
+
 }

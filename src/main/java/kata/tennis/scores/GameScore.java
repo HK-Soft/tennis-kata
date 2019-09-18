@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public interface GameScore<T> {
 
-    Optional<PlayerID> whoWonTheGame();
+    Optional<PlayerID> whoWon();
 
-    T getScore();
 }

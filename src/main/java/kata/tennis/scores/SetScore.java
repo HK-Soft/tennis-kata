@@ -33,12 +33,13 @@ public class SetScore extends SimpleGameScore implements GameScore<SimpleGameSco
         return new SetScore(this.getFirstPlayerScore(), this.getSecondPlayerScore());
     }
 
+    @Override
     public String toString() {
         return "(" + getFirstPlayerScore() + "-" + getSecondPlayerScore() + ")";
     }
 
     @Override
-    public Optional<PlayerID> whoWonTheGame() {
+    public Optional<PlayerID> whoWon() {
         int diff = getFirstPlayerScore() - getSecondPlayerScore();
         if (getFirstPlayerScore() >= 6 && getSecondPlayerScore() >= 6)
             return (diff > 0) ? Optional.of(PlayerID.FIRST_PLAYER) : Optional.of(PlayerID.SECOND_PLAYER);
@@ -49,8 +50,4 @@ public class SetScore extends SimpleGameScore implements GameScore<SimpleGameSco
         return Optional.empty();
     }
 
-    @Override
-    public SimpleGameScore getScore() {
-        return new SimpleGameScore(getFirstPlayerScore(),getSecondPlayerScore());
-    }
 }

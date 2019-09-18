@@ -52,7 +52,7 @@ public class SetScoreTest {
         //Given
         SetScore setScore = new SetScore(7, 5);
         //When
-        Optional<PlayerID> mayContainPlayer = setScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayer = setScore.whoWon();
         //Then
         Assertions.assertTrue(mayContainPlayer.isPresent());
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayer);
@@ -63,7 +63,7 @@ public class SetScoreTest {
         //Given
         SetScore setScore = new SetScore(6, 7);
         //When
-        Optional<PlayerID> mayContainPlayer = setScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayer = setScore.whoWon();
         //Then
         Assertions.assertTrue(mayContainPlayer.isPresent());
         Assertions.assertEquals(Optional.of(PlayerID.SECOND_PLAYER), mayContainPlayer);

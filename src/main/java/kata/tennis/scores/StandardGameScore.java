@@ -41,7 +41,7 @@ public class StandardGameScore implements GameScore<SimpleGameScore> {
     }
 
     @Override
-    public Optional<PlayerID> whoWonTheGame() {
+    public Optional<PlayerID> whoWon() {
         if (getFirstPlayerScore() == GameScoreType.WIN)
             return Optional.of(PlayerID.FIRST_PLAYER);
         if (getSecondPlayerScore() == GameScoreType.WIN)
@@ -49,8 +49,4 @@ public class StandardGameScore implements GameScore<SimpleGameScore> {
         return Optional.empty();
     }
 
-    @Override
-    public SimpleGameScore getScore() {
-        return new SimpleGameScore(firstPlayerScore.getScore(), secondPlayerScore.getScore());
-    }
 }

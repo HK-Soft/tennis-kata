@@ -31,14 +31,38 @@ public class GameStatus {
     }
 
     public Optional<SetScore> getCurrentGameScore() {
-        if(!this.score.isEmpty())
-            return Optional.of(this.score.get(this.score.size()-1));
+        if (!this.score.isEmpty())
+            return Optional.of(this.score.get(this.score.size() - 1));
         return Optional.empty();
     }
 
     public Optional<MatchScore> getCurrentGameMatch() {
-        if(!this.matches.isEmpty())
-            return Optional.of(this.matches.get(this.matches.size()-1));
+        if (!this.matches.isEmpty())
+            return Optional.of(this.matches.get(this.matches.size() - 1));
         return Optional.empty();
+    }
+
+    public Optional<TiebreakGameScore> getCurrentTiebreakScore() {
+        if (!this.tiebreaks.isEmpty())
+            return Optional.of(this.tiebreaks.get(this.tiebreaks.size() - 1));
+        return Optional.empty();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder()
+                .append("Player 1 : ").append(this.firstPlayerName).append("\n")
+                .append("Player 2 :").append(this.secondPlayerName).append("\n")
+                .append("Score : ");
+        this.score.forEach(setScore -> builder.append(setScore.toString()));
+        builder.append("\n");
+        getCurrentGameStatus().ifPresent(currentStatus ->
+                builder.append("Current game status:").append(currentStatus.toString())
+        );
+        builder.append("\n").append("Match Satus: ");
+        builder.append(getCurrentGameMatch().map(matchScore ->
+                matchScore.whoWon().map(playerID -> playerID + "Wins").orElse("in progress")
+        ).orElse(""));
+        return builder.toString();
     }
 }

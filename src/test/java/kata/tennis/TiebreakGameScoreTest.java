@@ -24,7 +24,7 @@ public class TiebreakGameScoreTest {
         //Given
         TiebreakGameScore gameScore = new TiebreakGameScore(7, 0);
         //When
-        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWon();
         //Then
         Assertions.assertTrue(mayContainPlayerId.isPresent());
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
@@ -35,7 +35,7 @@ public class TiebreakGameScoreTest {
         //Given
         TiebreakGameScore gameScore = new TiebreakGameScore(0, 0);
         //When
-        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWon();
         //Then
         Assertions.assertFalse(mayContainPlayerId.isPresent());
     }
@@ -45,7 +45,7 @@ public class TiebreakGameScoreTest {
         //Given
         TiebreakGameScore gameScore = new TiebreakGameScore(8, 7);
         //When
-        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWon();
         //Then
         Assertions.assertFalse(mayContainPlayerId.isPresent());
     }

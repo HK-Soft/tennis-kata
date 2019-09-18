@@ -33,12 +33,13 @@ public class TiebreakGameScore extends SimpleGameScore implements GameScore<Simp
         return new TiebreakGameScore(this.getFirstPlayerScore(), this.getSecondPlayerScore());
     }
 
+    @Override
     public String toString() {
         return "(" + getFirstPlayerScore() + "-" + getSecondPlayerScore() + ")";
     }
 
     @Override
-    public Optional<PlayerID> whoWonTheGame() {
+    public Optional<PlayerID> whoWon() {
         int diff = getFirstPlayerScore() - getSecondPlayerScore();
         if (getFirstPlayerScore() >= 7 && diff >= 2)
             return Optional.of(PlayerID.FIRST_PLAYER);
@@ -48,8 +49,4 @@ public class TiebreakGameScore extends SimpleGameScore implements GameScore<Simp
     }
 
 
-    @Override
-    public SimpleGameScore getScore() {
-        return this;
-    }
 }

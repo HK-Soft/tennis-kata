@@ -33,22 +33,18 @@ public class MatchScore extends SimpleGameScore implements GameScore<SimpleGameS
         return new MatchScore(this.getFirstPlayerScore(), this.getSecondPlayerScore());
     }
 
+    @Override
     public String toString() {
         return "(" + getFirstPlayerScore() + "-" + getSecondPlayerScore() + ")";
     }
 
-
     @Override
-    public Optional<PlayerID> whoWonTheGame() {
-        if(getFirstPlayerScore() >= 3)
+    public Optional<PlayerID> whoWon() {
+        if (getFirstPlayerScore() >= 3)
             return Optional.of(PlayerID.FIRST_PLAYER);
-        if(getSecondPlayerScore() >= 3)
+        if (getSecondPlayerScore() >= 3)
             return Optional.of(PlayerID.SECOND_PLAYER);
         return Optional.empty();
     }
 
-    @Override
-    public SimpleGameScore getScore() {
-        return new SimpleGameScore(getFirstPlayerScore(),getSecondPlayerScore());
-    }
 }

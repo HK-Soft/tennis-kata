@@ -77,7 +77,7 @@ public class StandardGameScoreTest {
         //Given
         StandardGameScore gameScore = new StandardGameScore(GameScoreType.WIN, GameScoreType.LOVE);
         //When
-        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWon();
         //Then
         Assertions.assertTrue(mayContainPlayerId.isPresent());
         Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
@@ -89,7 +89,7 @@ public class StandardGameScoreTest {
         //Given
         StandardGameScore gameScore = new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE);
         //When
-        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWon();
         //Then
         Assertions.assertFalse(mayContainPlayerId.isPresent());
     }

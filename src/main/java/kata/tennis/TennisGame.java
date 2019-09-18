@@ -47,12 +47,12 @@ public class TennisGame {
         MatchScore matchScore = nextMatchScore(setScore, currentMatchScore);
 
 
-        if (gameScore.whoWonTheGame().isPresent())
+        if (gameScore.whoWon().isPresent())
             this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
 
         if (!tiebreak)
             this.gameStatus.getScore().add(setScore);
-        if (setScore.whoWonTheGame().isPresent())
+        if (setScore.whoWon().isPresent())
             this.gameStatus.getScore().add(new SetScore(0, 0));
 
         this.gameStatus.getMatches().add(matchScore);
@@ -146,10 +146,10 @@ public class TennisGame {
     }
 
     public SetScore nextSetScore(GameScore<?> currentGame, SetScore currentSetScore) {
-        if (currentSetScore.whoWonTheGame().isPresent())
+        if (currentSetScore.whoWon().isPresent())
             return currentSetScore;
         SetScore result = currentSetScore.copy();
-        currentGame.whoWonTheGame().ifPresent(playerId -> {
+        currentGame.whoWon().ifPresent(playerId -> {
             if (playerId == PlayerID.FIRST_PLAYER)
                 result.setFirstPlayerScore(result.getFirstPlayerScore() + 1);
             else result.setSecondPlayerScore(result.getSecondPlayerScore() + 1);
@@ -158,10 +158,10 @@ public class TennisGame {
     }
 
     public MatchScore nextMatchScore(SetScore currentSetScore, MatchScore currentMatchScore) {
-        if (currentMatchScore.whoWonTheGame().isPresent())
+        if (currentMatchScore.whoWon().isPresent())
             return currentMatchScore;
         MatchScore result = currentMatchScore.copy();
-        currentSetScore.whoWonTheGame().ifPresent(playerID -> {
+        currentSetScore.whoWon().ifPresent(playerID -> {
             if (playerID == PlayerID.FIRST_PLAYER) {
                 result.setFirstPlayerScore(result.getFirstPlayerScore() + 1);
             } else {
