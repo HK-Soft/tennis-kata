@@ -37,8 +37,9 @@ public class TiebreakGameScore extends SimpleGameScore implements GameScore<Simp
 
     @Override
     public Optional<PlayerID> whoWonTheGame() {
-        return null;
+        return Optional.empty();
     }
+
 
     @Override
     public SimpleGameScore getScore() {

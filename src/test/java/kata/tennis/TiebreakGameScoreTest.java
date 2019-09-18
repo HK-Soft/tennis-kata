@@ -3,6 +3,8 @@ package kata.tennis;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 public class TiebreakGameScoreTest {
 
     @Test
@@ -13,6 +15,18 @@ public class TiebreakGameScoreTest {
         //When
         TiebreakGameScore result = tennisGame.nextTiebreakGameScore(PlayerID.SECOND_PLAYER, tiebreakGameScore);
         //Then
-        Assertions.assertEquals(new TiebreakGameScore(0,2),result);
+        Assertions.assertEquals(new TiebreakGameScore(0, 2), result);
     }
+
+    @Test
+    public void should_return_the_wining_player_when_score_is_win() {
+        //Given
+        TiebreakGameScore gameScore = new TiebreakGameScore(7, 0);
+        //When
+        Optional<PlayerID> mayContainPlayerId = gameScore.whoWonTheGame();
+        //Then
+        Assertions.assertTrue(mayContainPlayerId.isPresent());
+        Assertions.assertEquals(Optional.of(PlayerID.FIRST_PLAYER), mayContainPlayerId);
+    }
+
 }
