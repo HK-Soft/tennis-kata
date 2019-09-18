@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class MatchScore extends SimpleGameScore implements GameScore<SimpleGameScore> {
-    
+
     public MatchScore() {
         super();
     }
@@ -40,6 +40,10 @@ public class MatchScore extends SimpleGameScore implements GameScore<SimpleGameS
 
     @Override
     public Optional<PlayerID> whoWonTheGame() {
+        if(getFirstPlayerScore() >= 3)
+            return Optional.of(PlayerID.FIRST_PLAYER);
+        if(getSecondPlayerScore() >= 3)
+            return Optional.of(PlayerID.SECOND_PLAYER);
         return Optional.empty();
     }
 
