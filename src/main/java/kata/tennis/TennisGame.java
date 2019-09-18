@@ -19,12 +19,8 @@ public class TennisGame {
     private GameStatus gameStatus = new GameStatus();
 
     public void score(PlayerID playerID) {
-        StandardGameScore currentGameScore = gameStatus.getCurrentGameStatus().map(
-                simpleGameScore -> new StandardGameScore(
-                        GameScoreType.fromScore(simpleGameScore.getFirstPlayerScore()),
-                        GameScoreType.fromScore(simpleGameScore.getSecondPlayerScore())
-                )
-        ).orElse(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
+        StandardGameScore currentGameScore = gameStatus.getCurrentGameStatus()
+                .orElse(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
         StandardGameScore gameScore = nextStandardGameScore(playerID, currentGameScore);
         SetScore currentScore = gameStatus.getCurrentGameScore().orElse(new SetScore(0, 0));
 
@@ -32,11 +28,11 @@ public class TennisGame {
 
         MatchScore matchScore = nextMatchScore(setScore, new MatchScore(0, 0));
 
-        if(currentScore.getFirstPlayerScore() != setScore.getFirstPlayerScore()  ||
-                currentScore.getSecondPlayerScore() != setScore.getSecondPlayerScore()){
-            this.gameStatus.getStatus().add(new SimpleGameScore(0,0));
+        if (currentScore.getFirstPlayerScore() != setScore.getFirstPlayerScore() ||
+                currentScore.getSecondPlayerScore() != setScore.getSecondPlayerScore()) {
+            this.gameStatus.getStatus().add(new StandardGameScore(GameScoreType.LOVE, GameScoreType.LOVE));
         } else {
-            this.gameStatus.getStatus().add(gameScore.getScore());
+            this.gameStatus.getStatus().add(gameScore);
         }
 
 
