@@ -11,7 +11,8 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StandardGameScore {
+public class StandardGameScore implements GameScore<StandardGameScore> {
+
     private GameScoreType firstPlayerScore = GameScoreType.LOVE;
     private GameScoreType secondPlayerScore = GameScoreType.LOVE;
 
@@ -37,4 +38,13 @@ public class StandardGameScore {
         return "(" + firstPlayerScore + "-" + secondPlayerScore + ")";
     }
 
+    @Override
+    public PlayerID whoWonTheGame() {
+        return null;
+    }
+
+    @Override
+    public StandardGameScore getScore() {
+        return null;
+    }
 }

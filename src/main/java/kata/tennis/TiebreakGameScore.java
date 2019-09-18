@@ -1,40 +1,46 @@
 package kata.tennis;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.Objects;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class TiebreakGameScore {
-    private int firstPlayerScore = 0;
-    private int secondPlayerScore = 0;
+public class TiebreakGameScore extends SimpleGameScore implements GameScore<SimpleGameScore> {
+
+    public TiebreakGameScore() {
+        super();
+    }
+
+    public TiebreakGameScore(int firstPlayerScore, int secondPlayerScore) {
+        super(firstPlayerScore, secondPlayerScore);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TiebreakGameScore that = (TiebreakGameScore) o;
-        return firstPlayerScore == that.firstPlayerScore &&
-                secondPlayerScore == that.secondPlayerScore;
+        return getFirstPlayerScore() == that.getFirstPlayerScore() &&
+                getSecondPlayerScore() == that.getSecondPlayerScore();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstPlayerScore, secondPlayerScore);
+        return Objects.hash(getFirstPlayerScore(), getSecondPlayerScore());
     }
 
     public TiebreakGameScore copy() {
-        return new TiebreakGameScore(this.firstPlayerScore, this.secondPlayerScore);
+        return new TiebreakGameScore(this.getFirstPlayerScore(), this.getSecondPlayerScore());
     }
 
     public String toString() {
-        return "(" + firstPlayerScore + "-" + secondPlayerScore + ")";
+        return "(" + getFirstPlayerScore() + "-" + getSecondPlayerScore() + ")";
     }
 
+    @Override
+    public PlayerID whoWonTheGame() {
+        return null;
+    }
+
+    @Override
+    public SimpleGameScore getScore() {
+        return this;
+    }
 }
