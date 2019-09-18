@@ -95,8 +95,14 @@ public class TennisGame {
         return result;
     }
 
-    public SetScore nextSetScore(GameScore currentGame, SetScore currentSetScore) {
-        return null;
+    public SetScore nextSetScore(GameScore<?> currentGame, SetScore currentSetScore) {
+        SetScore result = currentSetScore.copy();
+        currentGame.whoWonTheGame().ifPresent(playerId -> {
+            if (playerId == PlayerID.FIRST_PLAYER)
+                result.setFirstPlayerScore(result.getFirstPlayerScore() + 1);
+            else result.setSecondPlayerScore(result.getSecondPlayerScore() + 1);
+        });
+        return result;
     }
 
     public static void main(String[] args) {

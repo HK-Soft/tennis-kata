@@ -19,7 +19,7 @@ public class SetScore extends SimpleGameScore implements GameScore<SimpleGameSco
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TiebreakGameScore that = (TiebreakGameScore) o;
+        SetScore that = (SetScore) o;
         return getFirstPlayerScore() == that.getFirstPlayerScore() &&
                 getSecondPlayerScore() == that.getSecondPlayerScore();
     }
@@ -29,8 +29,8 @@ public class SetScore extends SimpleGameScore implements GameScore<SimpleGameSco
         return Objects.hash(getFirstPlayerScore(), getSecondPlayerScore());
     }
 
-    public TiebreakGameScore copy() {
-        return new TiebreakGameScore(this.getFirstPlayerScore(), this.getSecondPlayerScore());
+    public SetScore copy() {
+        return new SetScore(this.getFirstPlayerScore(), this.getSecondPlayerScore());
     }
 
     public String toString() {
